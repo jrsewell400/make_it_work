@@ -9,10 +9,12 @@ RSpec.describe "As a visitor,", type: :feature do
         project_1 = Project.create!(name: "Litfit",
                                     material: "Lamp Shade",
                                     challenge_id: challenge_1.id)
-                                   
-        visit "/projects/:id"
         
-
+        visit "/projects/#{project_1.id}"
+        
+        expect(page).to have_content("Challenge Theme: Apartment Furnishings")
+        expect(page).to have_content("Litfit")
+        expect(page).to have_content("Lamp Shade")
     end
   end
 end
